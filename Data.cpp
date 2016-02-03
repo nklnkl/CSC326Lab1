@@ -2,17 +2,24 @@
 
 Data::Data () {
 
-  // Buffer for the input stream.
-  string line;
-
-  // Reference to the file.
-  ifstream dataFile ("Data.txt");
-
   // Initialize work log values at zero.
   for (int i = 0; i < size; i++) {
     logs[i].code = 0;
     logs[i].comments = 0;
   }
+
+}
+
+log Data::getLogs () {
+  return *logs;
+}
+
+void Data::loadData () {
+  // Buffer for the input stream.
+  string line;
+
+  // Reference to the file.
+  ifstream dataFile ("Data.txt");
 
   // When the file stream is available, iterate
   // through its contents and ..
@@ -53,17 +60,7 @@ Data::Data () {
       }
 
     }
-
     // Close data file.
     dataFile.close();
-
-    for (int i = 0; i < size; i++) {
-      cout << i+1 << ": " << logs[i].code << ", " << logs[i].comments << "\n";
-    }
   }
-
-  cout << "\nEnd of log\n";
-}
-
-log Data::getLogs () {
 }

@@ -20,5 +20,6 @@ class Data {
   public:
     Data ();
     log getLogs ();
+    void loadData ();
 };
 #endif
