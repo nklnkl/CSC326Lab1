@@ -14,6 +14,10 @@ log Data::getLogs () {
   return *logs;
 }
 
+int Data::getSize () {
+  return size;
+}
+
 void Data::loadData () {
   // Buffer for the input stream.
   string line;

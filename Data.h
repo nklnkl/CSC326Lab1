@@ -1,9 +1,9 @@
 #ifndef _DATA
 #define _DATA
 
+// Needed for data file streaming.
 #include <fstream>
-#include <iostream>
-#include <string>
+// Needed for string -> int casting.
 #include <stdlib.h>
 
 using namespace std;
@@ -20,6 +20,7 @@ class Data {
   public:
     Data ();
     log getLogs ();
+    int getSize ();
     void loadData ();
 };
 #endif
