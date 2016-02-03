@@ -19,6 +19,10 @@ int Data::getSize () {
   return size;
 }
 
+int Data::getK() {
+  for(int i = size; i)
+}
+
 void Data::loadData () {
   // Buffer for the input stream.
   string line;
@@ -70,7 +74,7 @@ void Data::loadData () {
   }
 }
 
-void Data::runContest () {
+int Data::runContest () {
   // Buffer for the input stream.
   string line;
 
@@ -80,12 +84,16 @@ void Data::runContest () {
   // When the file stream is available, iterate
   // through its contents and ..
   if (dataFile.is_open()) {
+    // Initialize winner to 0 to allow loop to run.
+    int winner = 0;
     // Used to remember which column we're in.
     int col = 0;
     // Used to remember which current participant we're working on for the current work log row.
     int index = 0;
-    // Loop through the file stream word by word.
-    while (dataFile >> line) {
+    // Used to determine which row of the data file we're in. Read as "work log entry".
+    int row = 1;
+    // Loop through the file stream word by word as long as a winner has not been declared.
+    while (dataFile >> line && !winner) {
 
       // Based upon which column we're currently working on.
       switch (col) {
@@ -96,6 +104,8 @@ void Data::runContest () {
           index = atoi(line.c_str()) - 1;
           // Count to the next column.
           col++;
+          // Render result of this iteration.
+          cout << "Programmer #" << index << " submitted ";
           break;
 
         // In column 1,
@@ -104,6 +114,8 @@ void Data::runContest () {
           logs[index].code += atoi(line.c_str());
           // Count to the next column.
           col++;
+          // Render result of this iteration.
+          cout << atoi(line.c_str()) << " lines of code and ";
           break;
 
         // In column 2.
@@ -112,11 +124,28 @@ void Data::runContest () {
           logs[index].comments += atoi(line.c_str());
           // Reset the column count.
           col = 0;
+          // Render result of this iteration.
+          cout << atoi(line.c_str()) << " comments. ";
+          // Print total for current programmer.
+          cout << "Total so far. Code: " << logs[index].code << ", Comments: " << logs[index].comments << ".\n";
+          // Count to next work log.
+          row++;
+          // Check if this current programmer has exceeded 1000 lines of code.
+          if (logs[index].code > 1000) {
+            // Break loop by setting winner if it does.
+            winner = index;
+          }
           break;
       }
-
     }
     // Close data file.
     dataFile.close();
+
+    // If a winner was ever declared.
+    if (winner != 0) {
+      cout << "We have a winner!\n" << "Programmer #" << winner << " has reached lines " << logs[index].code << " of code.\n";
+      return winner;
+    }
+    return 0;
   }
 }

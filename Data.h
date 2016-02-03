@@ -5,6 +5,10 @@
 #include <fstream>
 // Needed for string -> int casting.
 #include <stdlib.h>
+// Needed for console output.
+#include <iostream>
+#include <string>
+
 using namespace std;
 
 struct log {
@@ -24,6 +28,7 @@ class Data {
     // Does not stop if a winner is decided, made this to prototype the actual
     // run contest() method.
     void loadData ();
-    void runContest();
+    int runContest();
+    int getK();
 };
 #endif
