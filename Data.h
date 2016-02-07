@@ -31,7 +31,7 @@ class Data {
     // The amount of padding between each column.
     int columnPadding;
   public:
-    Data ();
+    Data();
     // Runs the contest.
     int run();
     // Prints the header.
@@ -39,9 +39,14 @@ class Data {
     // Prints out the totals.
     void total();
     // Gets the single struct element from the logs array.
-    log getLog (int);
+    log getLog(int);
     // Gets the size of the array.
-    int getSize ();
+    int getSize();
+    /*
+      Returns the amount of programmers needed starting from 0 to match a given
+      programmer's lines of code written. Returns 0 if never matched.
+    */
+    int getK(int);
 };
 
 #endif

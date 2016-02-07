@@ -1,6 +1,6 @@
 #include "Data.h"
 // Constructor
-Data::Data() {
+Data::Data () {
   // Initialize work log values at zero.
   for (int i = 0; i < size; i++) {
     logs[i].code = 0;
@@ -13,7 +13,7 @@ Data::Data() {
   columnPadding = 3;
 }
 
-int Data::run() {
+int Data::run () {
   // Buffer for the input stream.
   string line;
   // Reference to the file.
@@ -80,7 +80,7 @@ int Data::run() {
   }
 }
 
-void Data::header() {
+void Data::header () {
   // Set print alignment to the left;
   cout << left;
   // Print out a column set to the width of its content + extra spaces for padding.
@@ -89,7 +89,7 @@ void Data::header() {
   cout << setw(column3.length() + columnPadding) << column3 << endl;
 }
 
-void Data::total() {
+void Data::total () {
   for (int i = 0; i < size; i++) {
     cout << setw(column1.length() + columnPadding) << i + 1;
     cout << setw(column2.length() + columnPadding) << logs[i].code;
@@ -103,4 +103,24 @@ log Data::getLog (int i) {
 
 int Data::getSize () {
   return size;
+}
+
+int Data::getK (int x) {
+  // The integer to keep track of our sum as we add each programmer's lines.
+  int sum = 0;
+  for (int i = 0; i < size; i++) {
+    // If the current programmer we're using isn't the one given.
+    if (i != x) {
+      sum += logs[i].code;
+    }
+    /* If the sum has surpassed the given programmer's total, break the loop
+    by returning this current programmer's index.
+    */
+    if (sum > logs[x].code) return i;
+  }
+
+  /* If we haven't reached a conclusion (which shouldn't happen if this function
+  was called after run() with the proper data).
+  */
+  return 0;
 }
