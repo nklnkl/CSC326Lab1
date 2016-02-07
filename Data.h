@@ -8,6 +8,8 @@
 // Needed for console output.
 #include <iostream>
 #include <string>
+// Needed for output formatting.
+#include <iomanip>
 
 using namespace std;
 
@@ -18,17 +20,28 @@ struct log {
 
 class Data {
   private:
+    // The amount of programmers.
     int static const size = 10;
+    // Struct used to hold sums of lines for each programmer.
     log logs[size];
+    // The titles for each column.
+    string column1;
+    string column2;
+    string column3;
+    // The amount of padding between each column.
+    int columnPadding;
   public:
     Data ();
+    // Runs the contest.
+    int run();
+    // Prints the header.
+    void header();
+    // Prints out the totals.
+    void total();
+    // Gets the single struct element from the logs array.
     log getLog (int);
+    // Gets the size of the array.
     int getSize ();
-    // Used to load data to logs. Does not monitor or console print anything.
-    // Does not stop if a winner is decided, made this to prototype the actual
-    // run contest() method.
-    void loadData ();
-    int runContest();
-    int getK();
 };
+
 #endif

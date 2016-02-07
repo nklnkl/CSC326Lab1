@@ -7,28 +7,30 @@ using namespace std;
 
 int main () {
 
-  cout << "\n\n";
+  // Make room.
+  cout << endl;
 
   // Initialize and load data from file.
   Data data;
-  int result = data.runContest();
 
-  // If there is a winner
-  if (result != 0) {
+  // Print the header.
+  data.header();
 
-    // Print the table.
-    cout << "\nResults\n";
-    for (int i = 0; i < data.getSize(); i++) {
-      // Print the current programmer.
-      cout << "Programmer #" << i+1 << ", code: " << data.getLog(i).code << ", comments: " << data.getLog(i).comments << ". ";
-      // Flag winner if possible.
-      if (i == result) cout << "<<<WINNER\n";
-      // Otherwise go to next line.
-      else cout << "\n";
-    }
-
-    // Run the smallest k function;
+  // Run the contest and set the winner if found. It will be zero if not.
+  int winner = data.run();
+  if (winner) {
+    cout << endl << "Programmer " << winner + 1 << " has won the contest." << endl << endl;
+  } else {
+    cout  << "No winner was selected for this contest." << endl << endl;
   }
+
+  // Print the header.
+  data.header();
+  // Print out the totals.
+  data.total();
+
+  // Make room.
+  cout << endl;
 
   return 0;
 }
