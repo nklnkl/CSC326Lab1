@@ -7,19 +7,19 @@ using namespace std;
 
 int main () {
 
-  string filename;
+  string fileName;
   cout << "Enter the name of the file: ";
-  cin >> filename;
+  cin >> fileName;
 
   // Make room.
   cout << endl;
-  cout << filename << endl;
+  cout << fileName << endl;
   // Initialize and load data from file.
   Data data;
   // Print the header.
   data.header();
   // Run the contest and set the winner if found. It will be zero if not.
-  int winner = data.run(filename);
+  int winner = data.run(fileName);
   // Make room.
   cout << endl;
   // Print the header.
