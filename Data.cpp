@@ -13,11 +13,11 @@ Data::Data () {
   columnPadding = 3;
 }
 
-int Data::run () {
+int Data::run (string file) {
   // Buffer for the input stream.
   string line;
-  // Reference to the file.
-  ifstream dataFile ("Data.txt");
+  // Reference to the file based on given input 'i';
+  ifstream dataFile (file.c_str());
   // A storage for the winner if it is ever declared.
   int winner = 0;
 

@@ -33,7 +33,7 @@ class Data {
   public:
     Data();
     // Runs the contest.
-    int run();
+    int run(string);
     // Prints the header.
     void header();
     // Prints out the totals.

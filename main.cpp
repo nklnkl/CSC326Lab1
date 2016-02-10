@@ -7,24 +7,25 @@ using namespace std;
 
 int main () {
 
+  string filename;
+  cout << "Enter the name of the file: ";
+  cin >> filename;
+
   // Make room.
   cout << endl;
-
+  cout << filename << endl;
   // Initialize and load data from file.
   Data data;
-
   // Print the header.
   data.header();
   // Run the contest and set the winner if found. It will be zero if not.
-  int winner = data.run();
+  int winner = data.run(filename);
   // Make room.
   cout << endl;
-
   // Print the header.
   data.header();
   // Print out the totals.
   data.total();
-
   if (winner) {
     cout << endl << "Programmer " << winner + 1 << " has won the contest." << endl << endl;
     // Get the lowest amount of programmers starting with 1 to match winner's work.
@@ -35,7 +36,6 @@ int main () {
   } else {
     cout  << "No winner was selected for this contest." << endl << endl;
   }
-
   // Make room.
   cout << endl;
 
